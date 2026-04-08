@@ -87,3 +87,51 @@ CREATE TABLE compra_venda (
     createAT TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updateAT TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
+
+-- USE sistemas_de_eventos_musicais;
+
+SHOW TABLES;
+
+DESCRIBE ingresso;
+DESCRIBE evento;
+
+ALTER TABLE ingresso ADD tipo BOOL;
+ALTER TABLE ingresso ADD status BOOL;
+
+INSERT INTO evento (nome, dataInicio, duracao, dataFim, endereco, quantArtistas) VALUES (
+	"Lollapalooza",
+    "2026-03-20",
+    "3 dias",
+    "2026-03-22",
+    "Autódromo de Interlagos, São Paulo",
+    15
+);
+
+INSERT INTO evento (nome, dataInicio, duracao, dataFim, endereco, quantArtistas) VALUES (
+	"Bainha de Facão",
+    "2026-04-11",
+    "1 dia",
+    "2026-04-11",
+    "Discodelia - Pub & Records",
+    7
+);
+
+INSERT INTO evento (nome, dataInicio, duracao, dataFim, endereco, quantArtistas) VALUES (
+	"Nhl Festival 18",
+    "2026-05-22",
+    "1 dia",
+    "2026-05-22",
+    "Discodelia - Pub & Records",
+    4
+);
+
+INSERT INTO evento (nome, dataInicio, duracao, dataFim, endereco, quantArtistas) VALUES (
+	"Nhl Emo Fest",
+    "2026-07-05",
+    "1 dia",
+    "2026-07-22",
+    "Discodelia - Pub & Records",
+    3
+);
+
+SELECT * FROM evento;
