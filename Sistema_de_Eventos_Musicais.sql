@@ -134,4 +134,94 @@ INSERT INTO evento (nome, dataInicio, duracao, dataFim, endereco, quantArtistas)
     3
 );
 
-SELECT * FROM evento;
+-- USE sistemas_de_eventos_musicais;
+
+INSERT INTO evento (nome, dataInicio, duracao, dataFim, endereco, quantArtistas) VALUES (
+	"Festival de Verão Salvador 2026",
+    "2026-01-24",
+    "2 dias",
+    "2026-01-25",
+    "Arena Festival - Wet'n Wild, Avenida Paralela",
+    14
+);
+
+INSERT INTO evento (nome, dataInicio, duracao, dataFim, endereco, quantArtistas) VALUES (
+	"The Black Parade 2026 Stadium Tour",
+    "2026-02-05",
+    "2 dias",
+    "2026-02-06",
+    "Allianz Parque, São Paulo",
+    2
+);
+
+INSERT INTO evento (nome, dataInicio, duracao, dataFim, endereco, quantArtistas) VALUES (
+	"DTMF World Tour",
+    "2026-02-20",
+    "2 dias",
+    "2026-02-21",
+    "Allianz Parque, São Paulo",
+    1
+);
+
+INSERT INTO evento (nome, dataInicio, duracao, dataFim, endereco, quantArtistas) VALUES (
+	"PWR UP TOUR",
+    "2026-02-24",
+    "1 dia",
+    "2026-02-24",
+    "Estádio MorumBIS, São Paulo",
+    2
+);
+
+INSERT INTO evento (nome, dataInicio, duracao, dataFim, endereco, quantArtistas) VALUES (
+	"PWR UP TOUR",
+    "2026-02-28",
+    "1 dia",
+    "2026-02-28",
+    "Estádio MorumBIS, São Paulo",
+    2
+);
+
+INSERT INTO evento (nome, dataInicio, duracao, dataFim, endereco, quantArtistas) VALUES (
+	"PWR UP TOUR",
+    "2026-03-04",
+    "1 dia",
+    "2026-03-04",
+    "Estádio MorumBIS, São Paulo",
+    2
+);
+
+INSERT INTO evento (nome, dataInicio, duracao, dataFim, endereco, quantArtistas) VALUES (
+	"Monsters of Rock 2026",
+    "2026-04-04",
+    "1 dia",
+    "2026-04-04",
+    "Allianz Parque, São Paulo",
+    7
+);
+
+INSERT INTO evento (nome, dataInicio, duracao, dataFim, endereco, quantArtistas) VALUES (
+	"Coolritiba 2026",
+    "2026-05-23",
+    "1 dia",
+    "2026-05-23",
+    "Pedreira Paulo Leminski, Curitiba - PR",
+    21
+);
+
+INSERT INTO evento (nome, dataInicio, duracao, dataFim, endereco, quantArtistas) VALUES (
+	"João Rock",
+    "2026-08-01",
+    "1 dia",
+    "2026-08-01",
+    "Parque Permanente de Exposições, Ribeirão Preto",
+    27
+);
+
+INSERT INTO evento (nome, dataInicio, duracao, dataFim, endereco, quantArtistas) VALUES (
+	"Rock in Rio",
+    "2026-09-04",
+    "7 dias",
+    "2026-09-13",
+    "Parque dos Atletas, Rio de Janeiro",
+    91
+);
