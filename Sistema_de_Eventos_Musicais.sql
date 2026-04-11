@@ -225,3 +225,59 @@ INSERT INTO evento (nome, dataInicio, duracao, dataFim, endereco, quantArtistas)
     "Parque dos Atletas, Rio de Janeiro",
     91
 );
+
+-- update sugestão
+
+UPDATE ingresso 
+SET valor = 450.00, status = 1 
+WHERE id = 1;
+
+UPDATE ingresso 
+SET assento = 'Pista Premium' 
+WHERE id = 2;
+
+UPDATE evento 
+SET dataFim = '2026-03-24' 
+WHERE id = 1;
+
+UPDATE evento 
+SET quantArtistas = 16 
+WHERE nome = 'Lollapalooza';
+
+UPDATE cliente 
+SET email = 'joao.pedro.novo@email.com' 
+WHERE id = 1;
+
+UPDATE cliente 
+SET telefone = '(11)90000-0000' 
+WHERE cpf = '123.456.789-00';
+
+-- select sugestão
+-- Consultas Simples
+SELECT nome, dataInicio, dataFim 
+FROM evento;
+
+SELECT nome, genero 
+FROM artista 
+WHERE idade > 30;
+
+SELECT e.nome, l.nome, l.endereco 
+FROM evento e
+JOIN local l ON e.localID = l.id;
+
+-- Consultas Complexas
+
+SELECT c.nome, i.assento, i.valor, cv.metodoPagamento 
+FROM compra_venda cv
+JOIN cliente c ON cv.clienteID = c.id
+JOIN ingresso i ON cv.ingressoID = i.id;
+
+SELECT eventoID, COUNT(id) 
+FROM ingresso 
+GROUP BY eventoID;
+
+SELECT e.nome, SUM(i.valor) 
+FROM compra_venda cv
+JOIN ingresso i ON cv.ingressoID = i.id
+JOIN evento e ON i.eventoID = e.id
+GROUP BY e.nome;
