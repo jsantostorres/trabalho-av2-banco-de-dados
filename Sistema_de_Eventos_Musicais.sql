@@ -225,16 +225,33 @@ INSERT INTO evento (nome, dataInicio, duracao, dataFim, endereco, quantArtistas)
     "Parque dos Atletas, Rio de Janeiro",
     91
 );
+-- insert clientes
+INSERT INTO cliente (nome, idade, cpf, telefone, email) VALUES 
+('João Santos', 25, '111.222.333-44', '(11)91111-1111', 'joao.santos@email.com'),
+('Mariana Lima', 22, '222.333.444-55', '(71)92222-2222', 'mariana.lima@email.com'),
+('Carlos Eduardo', 30, '333.444.555-66', '(21)93333-3333', 'carlos.ed@email.com'),
+('Ana Paula', 28, '444.555.666-77', '(31)94444-4444', 'ana.paula@email.com'),
+('Pedro Henrique', 35, '555.666.777-88', '(41)95555-5555', 'pedro.h@email.com'),
+('Beatriz Costa', 19, '666.777.888-99', '(51)96666-6666', 'bia.costa@email.com'),
+('Lucas Fernandes', 27, '777.888.999-00', '(61)97777-7777', 'lucas.fer@email.com'),
+('Sofia Martins', 24, '888.999.000-11', '(81)98888-8888', 'sofia.m@email.com'),
+('Tiago Ribeiro', 32, '999.000.111-22', '(91)99999-9999', 'tiago.rib@email.com'),
+('Camila Alves', 26, '000.111.222-33', '(19)90000-0000', 'camila.alves@email.com');
+--insert funcionarios
+INSERT INTO funcionario (nome, idade, cargo, salario) VALUES 
+('Marcos Silva', 40, 'Gerente de Bilheteira', 4500.00),
+('Juliana Mendes', 29, 'Vendedora', 2500.00),
+('Roberto Dias', 35, 'Vendedor', 2500.00),
+('Fernanda Gomes', 26, 'Atendimento', 2200.00),
+('Ricardo Sousa', 33, 'Supervisor de Vendas', 3500.00),
+('Cláudia Rocha', 42, 'Gerente de Operações', 5000.00),
+('Fábio Castro', 23, 'Vendedor', 2500.00),
+('Amanda Nunes', 31, 'Vendedora VIP', 3000.00),
+('Diego Monteiro', 28, 'Suporte Técnico', 2800.00),
+('Letícia Carvalho', 25, 'Atendimento', 2200.00);
+
 
 -- update sugestão
-
-UPDATE ingresso 
-SET valor = 450.00, status = 1 
-WHERE id = 1;
-
-UPDATE ingresso 
-SET assento = 'Pista Premium' 
-WHERE id = 2;
 
 UPDATE evento 
 SET dataFim = '2026-03-24' 
@@ -243,14 +260,6 @@ WHERE id = 1;
 UPDATE evento 
 SET quantArtistas = 16 
 WHERE nome = 'Lollapalooza';
-
-UPDATE cliente 
-SET email = 'joao.pedro.novo@email.com' 
-WHERE id = 1;
-
-UPDATE cliente 
-SET telefone = '(11)90000-0000' 
-WHERE cpf = '123.456.789-00';
 
 -- select sugestão
 -- Consultas Simples
