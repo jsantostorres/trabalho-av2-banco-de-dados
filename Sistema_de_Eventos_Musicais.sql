@@ -114,6 +114,60 @@ INSERT INTO evento (nome, data_inicio, duracao_dias, data_fim, endereco, quant_a
 ("Noite Eletrônica", "2026-12-12", 1, "2026-12-12", "Balneário Camboriú - SC, Brasil", 3),
 ("Réveillon Musical", "2026-12-30", 2, "2026-12-31", "Fortaleza - CE, Brasil", 6);
 
+-- insert artistas
+INSERT INTO artista (nome, idade, repertorio_musical, genero, eventoID) VALUES
+('Brenda Luz', 27, 'MPB com influências de samba', 'MPB', 1),
+('Caio Ribeiro', 35, 'Bossa nova e clássicos brasileiros', 'MPB', 1),
+('Daniela Prado', 31, 'MPB romântica', 'MPB', 1),
+('Felipe Nogueira', 29, 'MPB moderna autoral', 'MPB', 1),
+('Banda Solar', 26, 'Pop rock animado', 'Pop Rock', 2),
+('Julio César', 33, 'Pop internacional acústico', 'Pop', 2),
+('Banda Fúria', 28, 'Rock pesado autoral', 'Rock', 3),
+('Roberta Dias', 37, 'Sertanejo raiz feminino', 'Sertanejo', 4),
+('Henrique Lopes', 41, 'Moda de viola tradicional', 'Sertanejo', 4),
+('Trio Nordestino Raiz', 45, 'Forró tradicional instrumental', 'Forró', 5),
+('DJ Flash', 34, 'EDM e remix de hits', 'Eletrônica', 6),
+('MC Bruninho', 22, 'Funk paulista', 'Funk', 6),
+('DJ Carla', 30, 'House e dance', 'Eletrônica', 6),
+('MC Léo', 25, 'Funk consciente', 'Funk', 6),
+('Grupo Raiz do Samba', 39, 'Samba tradicional', 'Samba', 7),
+('Quarteto Azul', 36, 'Jazz instrumental moderno', 'Jazz', 8),
+('DJ Wave', 31, 'Tech house', 'Eletrônica', 9),
+('DJ Luna', 27, 'Progressive house', 'Eletrônica', 9),
+('DJ Sky', 29, 'Electro house', 'Eletrônica', 9),
+('DJ Fire', 35, 'Techno industrial', 'Eletrônica', 9),
+('Banda Axé Power', 38, 'Axé animado carnaval', 'Axé', 10),
+('Tati Bahia', 33, 'Axé e pop baiano', 'Axé', 10),
+('Swing do Pelô', 40, 'Pagodão baiano', 'Axé', 10),
+('Axé Mix', 36, 'Clássicos do axé', 'Axé', 10),
+('Banda Energia', 37, 'Axé elétrico', 'Axé', 10),
+('MC Raiz', 28, 'Rap underground', 'Hip Hop/Rap', 11),
+('Banda Aurora', 26, 'Indie rock nacional', 'Indie', 12),
+('Luna Reis', 24, 'Folk alternativo', 'Indie/Folk', 12),
+('Old School Band', 45, 'Rock clássico anos 70', 'Rock Clássico', 13),
+('Ministério Vida', 42, 'Louvor congregacional', 'Gospel', 14),
+('Cantora Sara', 34, 'Gospel contemporâneo', 'Gospel', 14),
+('Pop Stars BR', 23, 'Pop dançante', 'Pop', 15),
+('Kelly Moraes', 29, 'Pop romântico', 'Pop', 15),
+('Dance Crew', 27, 'Pop eletrônico', 'Pop', 15),
+('Vitor Klein', 31, 'Pop internacional', 'Pop', 15),
+('Fusion Recife', 38, 'Mistura de ritmos brasileiros', 'MPB', 16),
+('Ritmo Livre', 35, 'World music', 'MPB', 16),
+('Coletivo Som', 33, 'Experimental brasileiro', 'MPB', 16),
+('Grupo Cultural PE', 41, 'Regional nordestino', 'MPB', 16),
+('Batida Urbana', 28, 'Mistura urbana', 'Hip Hop', 16),
+('Nação Musical', 37, 'Afro-brasileiro', 'MPB', 16),
+('Som Brasilis', 39, 'Instrumental brasileiro', 'MPB', 16),
+('DJ Night', 32, 'Eletrônica noturna', 'Eletrônica', 17),
+('DJ Vibe', 29, 'Dance music', 'Eletrônica', 17),
+('DJ ElectroMax', 34, 'EDM', 'Eletrônica', 17),
+('Banda Virada', 40, 'Hits variados ao vivo', 'Pop', 18),
+('Grupo Festa', 36, 'Música para eventos', 'Pop', 18),
+('DJ Celebration', 33, 'Remixes festivos', 'Eletrônica', 18),
+('Cantor Lucas', 28, 'Pop nacional', 'Pop', 18),
+('Energia Show', 38, 'Show ao vivo animado', 'Pop', 18),
+('Banda Réveillon', 42, 'Clássicos e atuais', 'Pop', 18);
+
 -- insert clientes
 INSERT INTO cliente (nome, idade, cpf, telefone, email) VALUES 
 ('João Santos', 25, '111.222.333-44', '(11)91111-1111', 'joao.santos@email.com'),
@@ -151,7 +205,7 @@ WHERE nome = 'Lollapalooza';
 
 -- select sugestão
 -- Consultas Simples
-SELECT nome, data_inicio, data_fim 
+SELECT nome, dataInicio, dataFim 
 FROM evento;
 
 SELECT nome, genero 
@@ -164,7 +218,7 @@ JOIN local l ON e.localID = l.id;
 
 -- Consultas Complexas
 
-SELECT c.nome, i.assento, i.valor, cv.metodo_pagamento 
+SELECT c.nome, i.assento, i.valor, cv.metodoPagamento 
 FROM compra_venda cv
 JOIN cliente c ON cv.clienteID = c.id
 JOIN ingresso i ON cv.ingressoID = i.id;
