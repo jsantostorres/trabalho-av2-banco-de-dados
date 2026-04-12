@@ -200,8 +200,8 @@ SET data_fim = '2026-03-24'
 WHERE id = 1;
 
 UPDATE evento 
-SET quant_artistas = 16 
-WHERE nome = 'Lollapalooza';
+SET quant_artistas = 9
+WHERE nome = 'Festival Verão Bahia';
 
 -- select sugestão
 -- Consultas Simples
