@@ -1,11 +1,11 @@
 CREATE TABLE evento (
 	id INT AUTO_INCREMENT PRIMARY KEY UNIQUE,
     nome VARCHAR(100),
-    dataInicio DATE,
+    data_inicio DATE,
     duracao VARCHAR(50),
-    dataFim DATE,
+    data_fim DATE,
     endereco VARCHAR(100),
-    quantArtistas INT,
+    quant_artistas INT,
     createAT TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updateAT TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
@@ -14,7 +14,7 @@ CREATE TABLE artista (
 	id INT AUTO_INCREMENT PRIMARY KEY UNIQUE,
     nome VARCHAR(100) NOT NULL,
     idade INT NOT NULL,
-    playlist VARCHAR(254),
+    repertorio_musical VARCHAR(254),
     genero VARCHAR(100),
     eventoID INT,
     createAT TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -56,8 +56,10 @@ CREATE TABLE ingresso (
 	id INT AUTO_INCREMENT PRIMARY KEY UNIQUE,
     valor DOUBLE,
     assento VARCHAR(10),
-    dataShow DATE,
+    data_show DATE,
     duracao VARCHAR(50),
+    tipo BOOL,
+    status BOOL,
     eventoID INT,
     FOREIGN KEY (eventoID) REFERENCES evento (id),
     createAT TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -77,7 +79,7 @@ CREATE TABLE cliente (
 
 CREATE TABLE compra_venda (
 	id INT AUTO_INCREMENT PRIMARY KEY UNIQUE,
-    metodoPagamento VARCHAR(50),
+    metodo_pagamento VARCHAR(50),
     clienteID INT,
     funcionarioID INT,
     ingressoID INT,
@@ -88,143 +90,30 @@ CREATE TABLE compra_venda (
     updateAT TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
--- USE sistemas_de_eventos_musicais;
+ALTER TABLE evento RENAME COLUMN duracao TO duracao_dias;
+ALTER TABLE evento MODIFY COLUMN duracao_dias INT;
 
-SHOW TABLES;
+-- insert eventos
+INSERT INTO evento (nome, data_inicio, duracao_dias, data_fim, endereco, quant_artistas) VALUES
+("Festival Verão Bahia", "2026-01-10", 3, "2026-01-12", "Salvador - BA, Brasil", 6),
+("Rock na Praia", "2026-02-05", 2, "2026-02-06", "Florianópolis - SC, Brasil", 4),
+("Sertanejo Prime", "2026-03-15", 1, "2026-03-15", "Goiânia - GO, Brasil", 3),
+("Noite do Samba", "2026-04-02", 1, "2026-04-02", "Rio de Janeiro - RJ, Brasil", 5),
+("Festival de Jazz & Blues", "2026-04-20", 2, "2026-04-21", "Campos do Jordão - SP, Brasil", 4),
+("Eletro Beats Festival", "2026-05-10", 3, "2026-05-12", "São Paulo - SP, Brasil", 7),
+("Arraiá Musical", "2026-06-20", 2, "2026-06-21", "Caruaru - PE, Brasil", 6),
+("Forró das Antigas", "2026-06-25", 1, "2026-06-25", "Campina Grande - PB, Brasil", 3),
+("Indie Music Fest", "2026-07-08", 2, "2026-07-09", "Curitiba - PR, Brasil", 5),
+("Hip Hop Nation", "2026-08-12", 1, "2026-08-12", "São Paulo - SP, Brasil", 4),
+("Pagode & Cia", "2026-09-03", 1, "2026-09-03", "Belo Horizonte - MG, Brasil", 4),
+("Festival Gospel Brasil", "2026-09-18", 2, "2026-09-19", "Brasília - DF, Brasil", 6),
+("Clássicos do Rock", "2026-10-05", 2, "2026-10-06", "Porto Alegre - RS, Brasil", 5),
+("Axé Bahia Fest", "2026-11-10", 3, "2026-11-12", "Salvador - BA, Brasil", 8),
+("Pop Explosion", "2026-11-25", 1, "2026-11-25", "Rio de Janeiro - RJ, Brasil", 4),
+("Festival Multicultural", "2026-12-05", 3, "2026-12-07", "Recife - PE, Brasil", 7),
+("Noite Eletrônica", "2026-12-12", 1, "2026-12-12", "Balneário Camboriú - SC, Brasil", 3),
+("Réveillon Musical", "2026-12-30", 2, "2026-12-31", "Fortaleza - CE, Brasil", 6);
 
-DESCRIBE ingresso;
-DESCRIBE evento;
-
-ALTER TABLE ingresso ADD tipo BOOL;
-ALTER TABLE ingresso ADD status BOOL;
-
-INSERT INTO evento (nome, dataInicio, duracao, dataFim, endereco, quantArtistas) VALUES (
-	"Lollapalooza",
-    "2026-03-20",
-    "3 dias",
-    "2026-03-22",
-    "Autódromo de Interlagos, São Paulo",
-    15
-);
-
-INSERT INTO evento (nome, dataInicio, duracao, dataFim, endereco, quantArtistas) VALUES (
-	"Bainha de Facão",
-    "2026-04-11",
-    "1 dia",
-    "2026-04-11",
-    "Discodelia - Pub & Records",
-    7
-);
-
-INSERT INTO evento (nome, dataInicio, duracao, dataFim, endereco, quantArtistas) VALUES (
-	"Nhl Festival 18",
-    "2026-05-22",
-    "1 dia",
-    "2026-05-22",
-    "Discodelia - Pub & Records",
-    4
-);
-
-INSERT INTO evento (nome, dataInicio, duracao, dataFim, endereco, quantArtistas) VALUES (
-	"Nhl Emo Fest",
-    "2026-07-05",
-    "1 dia",
-    "2026-07-22",
-    "Discodelia - Pub & Records",
-    3
-);
-
--- USE sistemas_de_eventos_musicais;
-
-INSERT INTO evento (nome, dataInicio, duracao, dataFim, endereco, quantArtistas) VALUES (
-	"Festival de Verão Salvador 2026",
-    "2026-01-24",
-    "2 dias",
-    "2026-01-25",
-    "Arena Festival - Wet'n Wild, Avenida Paralela",
-    14
-);
-
-INSERT INTO evento (nome, dataInicio, duracao, dataFim, endereco, quantArtistas) VALUES (
-	"The Black Parade 2026 Stadium Tour",
-    "2026-02-05",
-    "2 dias",
-    "2026-02-06",
-    "Allianz Parque, São Paulo",
-    2
-);
-
-INSERT INTO evento (nome, dataInicio, duracao, dataFim, endereco, quantArtistas) VALUES (
-	"DTMF World Tour",
-    "2026-02-20",
-    "2 dias",
-    "2026-02-21",
-    "Allianz Parque, São Paulo",
-    1
-);
-
-INSERT INTO evento (nome, dataInicio, duracao, dataFim, endereco, quantArtistas) VALUES (
-	"PWR UP TOUR",
-    "2026-02-24",
-    "1 dia",
-    "2026-02-24",
-    "Estádio MorumBIS, São Paulo",
-    2
-);
-
-INSERT INTO evento (nome, dataInicio, duracao, dataFim, endereco, quantArtistas) VALUES (
-	"PWR UP TOUR",
-    "2026-02-28",
-    "1 dia",
-    "2026-02-28",
-    "Estádio MorumBIS, São Paulo",
-    2
-);
-
-INSERT INTO evento (nome, dataInicio, duracao, dataFim, endereco, quantArtistas) VALUES (
-	"PWR UP TOUR",
-    "2026-03-04",
-    "1 dia",
-    "2026-03-04",
-    "Estádio MorumBIS, São Paulo",
-    2
-);
-
-INSERT INTO evento (nome, dataInicio, duracao, dataFim, endereco, quantArtistas) VALUES (
-	"Monsters of Rock 2026",
-    "2026-04-04",
-    "1 dia",
-    "2026-04-04",
-    "Allianz Parque, São Paulo",
-    7
-);
-
-INSERT INTO evento (nome, dataInicio, duracao, dataFim, endereco, quantArtistas) VALUES (
-	"Coolritiba 2026",
-    "2026-05-23",
-    "1 dia",
-    "2026-05-23",
-    "Pedreira Paulo Leminski, Curitiba - PR",
-    21
-);
-
-INSERT INTO evento (nome, dataInicio, duracao, dataFim, endereco, quantArtistas) VALUES (
-	"João Rock",
-    "2026-08-01",
-    "1 dia",
-    "2026-08-01",
-    "Parque Permanente de Exposições, Ribeirão Preto",
-    27
-);
-
-INSERT INTO evento (nome, dataInicio, duracao, dataFim, endereco, quantArtistas) VALUES (
-	"Rock in Rio",
-    "2026-09-04",
-    "7 dias",
-    "2026-09-13",
-    "Parque dos Atletas, Rio de Janeiro",
-    91
-);
 -- insert clientes
 INSERT INTO cliente (nome, idade, cpf, telefone, email) VALUES 
 ('João Santos', 25, '111.222.333-44', '(11)91111-1111', 'joao.santos@email.com'),
@@ -237,7 +126,8 @@ INSERT INTO cliente (nome, idade, cpf, telefone, email) VALUES
 ('Sofia Martins', 24, '888.999.000-11', '(81)98888-8888', 'sofia.m@email.com'),
 ('Tiago Ribeiro', 32, '999.000.111-22', '(91)99999-9999', 'tiago.rib@email.com'),
 ('Camila Alves', 26, '000.111.222-33', '(19)90000-0000', 'camila.alves@email.com');
---insert funcionarios
+
+-- insert funcionarios
 INSERT INTO funcionario (nome, idade, cargo, salario) VALUES 
 ('Marcos Silva', 40, 'Gerente de Bilheteira', 4500.00),
 ('Juliana Mendes', 29, 'Vendedora', 2500.00),
@@ -250,20 +140,18 @@ INSERT INTO funcionario (nome, idade, cargo, salario) VALUES
 ('Diego Monteiro', 28, 'Suporte Técnico', 2800.00),
 ('Letícia Carvalho', 25, 'Atendimento', 2200.00);
 
-
 -- update sugestão
-
 UPDATE evento 
-SET dataFim = '2026-03-24' 
+SET data_fim = '2026-03-24' 
 WHERE id = 1;
 
 UPDATE evento 
-SET quantArtistas = 16 
+SET quant_artistas = 16 
 WHERE nome = 'Lollapalooza';
 
 -- select sugestão
 -- Consultas Simples
-SELECT nome, dataInicio, dataFim 
+SELECT nome, data_inicio, data_fim 
 FROM evento;
 
 SELECT nome, genero 
@@ -276,7 +164,7 @@ JOIN local l ON e.localID = l.id;
 
 -- Consultas Complexas
 
-SELECT c.nome, i.assento, i.valor, cv.metodoPagamento 
+SELECT c.nome, i.assento, i.valor, cv.metodo_pagamento 
 FROM compra_venda cv
 JOIN cliente c ON cv.clienteID = c.id
 JOIN ingresso i ON cv.ingressoID = i.id;
