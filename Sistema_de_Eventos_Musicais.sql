@@ -9,7 +9,7 @@ CREATE TABLE evento (
     createAT TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updateAT TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
-
+-- tabela local (joao vitor)
 CREATE TABLE local (
     id INT AUTO_INCREMENT PRIMARY KEY UNIQUE,
     nome VARCHAR(100) NOT NULL,
@@ -228,7 +228,7 @@ INSERT INTO funcionario (nome, idade, cargo, salario) VALUES
 ('Diego Monteiro', 28, 'Suporte Técnico', 2800.00),
 ('Letícia Carvalho', 25, 'Atendimento', 2200.00);
 
---insert local
+--insert local (joao vitor)
 INSERT INTO local (nome, endereco, capacidade) VALUES 
 ('Autódromo de Interlagos', 'São Paulo - SP', 100000),
 ('Discodelia - Pub & Records', 'Salvador - BA', 300),
