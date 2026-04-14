@@ -311,29 +311,29 @@ WHERE nome = 'Lollapalooza';
 
 -- select sugestão
 -- Consultas Simples
-SELECT nome, dataInicio, dataFim 
+SELECT nome, data_inicio, data_fim 
 FROM evento;
 
 SELECT nome, genero 
 FROM artista 
 WHERE idade > 30;
 
-SELECT e.nome, l.nome, l.endereco 
-FROM evento e
-JOIN local l ON e.localID = l.id;
-
 -- Consultas Complexas
+SELECT a.nome AS Artista, e.nome AS Evento
+FROM participacao p
+JOIN artista a ON p.artistaID = a.id
+JOIN evento e ON p.eventoID = e.id;
 
-SELECT c.nome, i.assento, i.valor, cv.metodoPagamento 
+SELECT c.nome AS Cliente, i.assento, i.valor, cv.metodo_pagamento 
 FROM compra_venda cv
 JOIN cliente c ON cv.clienteID = c.id
 JOIN ingresso i ON cv.ingressoID = i.id;
 
-SELECT eventoID, COUNT(id) 
+SELECT eventoID, COUNT(id) AS Qtd_Ingressos
 FROM ingresso 
 GROUP BY eventoID;
 
-SELECT e.nome, SUM(i.valor) 
+SELECT e.nome AS Evento, SUM(i.valor) AS Faturamento_Total
 FROM compra_venda cv
 JOIN ingresso i ON cv.ingressoID = i.id
 JOIN evento e ON i.eventoID = e.id
