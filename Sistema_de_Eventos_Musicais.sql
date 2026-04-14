@@ -298,6 +298,37 @@ INSERT INTO ingresso (valor, assento, data_show, duracao, is_vip, is_disponivel,
 (125, 'D2', '2026-04-21', '4h', FALSE, TRUE, 5), (120, 'E1', '2026-04-21', '4h', FALSE, TRUE, 5), -- 28
 (105, 'E2', '2026-04-21', '4h', FALSE, FALSE, 5); -- 29
 
+-- EVENTO 6 (3 dias)
+INSERT INTO ingresso (valor, assento, data_show, duracao, is_vip, is_disponivel, eventoID) VALUES
+(120, 'A1', '2026-05-10', '4h', FALSE, TRUE, 6), (115, 'A2', '2026-05-10', '4h', FALSE, FALSE, 6), -- 2
+(100, 'A3', '2026-05-10', '4h', FALSE, TRUE, 6), (120, 'B1', '2026-05-10', '4h', FALSE, TRUE, 6), -- 4
+(120, 'B2', '2026-05-10', '4h', FALSE, TRUE, 6), (110, 'C1', '2026-05-10', '4h', FALSE, FALSE, 6), -- 6
+(115, 'C2', '2026-05-10', '4h', FALSE, FALSE, 6), (190, 'VIP1', '2026-05-10', '4h', TRUE, FALSE, 6), -- 8
+(190, 'VIP2', '2026-05-10', '4h', TRUE, TRUE, 6), (185, 'VIP3', '2026-05-10', '4h', TRUE, TRUE, 6), -- 10
+(180, 'VIP4', '2026-05-10', '4h', TRUE, FALSE, 6), (120, 'D1', '2026-05-10', '4h', FALSE, FALSE, 6), -- 12
+(115, 'D2', '2026-05-10', '4h', FALSE, TRUE, 6), (110, 'E1', '2026-05-10', '4h', FALSE, TRUE, 6), -- 14
+(120, 'E2', '2026-05-10', '4h', FALSE, TRUE, 6), -- 15
+
+(130, 'A1', '2026-05-10', '5h', FALSE, TRUE, 6), (115, 'A2', '2026-05-10', '5h', FALSE, FALSE, 6), -- 17
+(135, 'A3', '2026-05-10', '5h', FALSE, FALSE, 6), (120, 'B1', '2026-05-10', '5h', FALSE, TRUE, 6), -- 19
+(120, 'B2', '2026-05-10', '5h', FALSE, TRUE, 6), (125, 'C1', '2026-05-10', '5h', FALSE, FALSE, 6), -- 21
+(115, 'C2', '2026-05-10', '5h', FALSE, FALSE, 6), (200, 'VIP1', '2026-05-10', '5h', TRUE, FALSE, 6), -- 23
+(190, 'VIP2', '2026-05-10', '5h', TRUE, FALSE, 6), (205, 'VIP3', '2026-05-10', '5h', TRUE, TRUE, 6), -- 25
+(200, 'VIP4', '2026-05-10', '5h', TRUE, FALSE, 6), (130, 'D1', '2026-05-10', '5h', FALSE, TRUE, 6), -- 27
+(115, 'D2', '2026-05-10', '5h', FALSE, TRUE, 6), (110, 'E1', '2026-05-10', '5h', FALSE, FALSE, 6), -- 29
+(120, 'E2', '2026-05-10', '5h', FALSE, FALSE, 6), -- 31
+
+(120, 'A1', '2026-05-10', '4h', FALSE, FALSE, 6), (115, 'A2', '2026-05-10', '4h', FALSE, TRUE, 6), -- 2
+(100, 'A3', '2026-05-10', '4h', FALSE, TRUE, 6), (120, 'B1', '2026-05-10', '4h', FALSE, TRUE, 6), -- 4
+(120, 'B2', '2026-05-10', '4h', FALSE, TRUE, 6), (110, 'C1', '2026-05-10', '4h', FALSE, TRUE, 6), -- 6
+(115, 'C2', '2026-05-10', '4h', FALSE, FALSE, 6), (190, 'VIP1', '2026-05-10', '4h', TRUE, FALSE, 6), -- 8
+(190, 'VIP2', '2026-05-10', '4h', TRUE, TRUE, 6), (185, 'VIP3', '2026-05-10', '4h', TRUE, FALSE, 6), -- 10
+(180, 'VIP4', '2026-05-10', '4h', TRUE, FALSE, 6), (120, 'D1', '2026-05-10', '4h', FALSE, FALSE, 6), -- 12
+(115, 'D2', '2026-05-10', '4h', FALSE, TRUE, 6), (110, 'E1', '2026-05-10', '4h', FALSE, TRUE, 6), -- 14
+(120, 'E2', '2026-05-10', '4h', FALSE, FALSE, 6); -- 15
+
+-- EVENTO 7 (2 dias)
+
 SELECT * FROM ingresso;
 
 -- update sugestão
