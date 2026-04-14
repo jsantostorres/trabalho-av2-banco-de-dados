@@ -2,26 +2,13 @@ CREATE TABLE evento (
 	id INT AUTO_INCREMENT PRIMARY KEY UNIQUE,
     nome VARCHAR(100),
     data_inicio DATE,
-    duracao VARCHAR(50),
+    duracao VARCHAR(50), -- duracao_dias INT
     data_fim DATE,
     endereco VARCHAR(100),
     quant_artistas INT,
     createAT TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updateAT TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
--- tabela local (joao vitor)
-CREATE TABLE local (
-    id INT AUTO_INCREMENT PRIMARY KEY UNIQUE,
-    nome VARCHAR(100) NOT NULL,
-    endereco VARCHAR(200) NOT NULL,
-    capacidade INT,
-    createAT TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updateAT TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-);
-
-ALTER TABLE evento DROP COLUMN endereco;
-ALTER TABLE evento ADD COLUMN localID INT;
-ALTER TABLE evento ADD FOREIGN KEY (localID) REFERENCES local(id);
 
 CREATE TABLE artista (
 	id INT AUTO_INCREMENT PRIMARY KEY UNIQUE,
@@ -71,8 +58,8 @@ CREATE TABLE ingresso (
     assento VARCHAR(10),
     data_show DATE,
     duracao VARCHAR(50),
-    tipo BOOL,
-    status BOOL,
+    tipo BOOL, -- is_vip
+    status BOOL, -- is_disponivel
     eventoID INT,
     FOREIGN KEY (eventoID) REFERENCES evento (id),
     createAT TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -105,6 +92,8 @@ CREATE TABLE compra_venda (
 
 ALTER TABLE evento RENAME COLUMN duracao TO duracao_dias;
 ALTER TABLE evento MODIFY COLUMN duracao_dias INT;
+ALTER TABLE ingresso RENAME COLUMN tipo TO is_vip;
+ALTER TABLE ingresso RENAME COLUMN status TO is_disponivel;
 
 -- insert eventos
 INSERT INTO evento (nome, data_inicio, duracao_dias, data_fim, endereco, quant_artistas) VALUES
@@ -228,18 +217,89 @@ INSERT INTO funcionario (nome, idade, cargo, salario) VALUES
 ('Diego Monteiro', 28, 'Suporte Técnico', 2800.00),
 ('Letícia Carvalho', 25, 'Atendimento', 2200.00);
 
---insert local (joao vitor)
-INSERT INTO local (nome, endereco, capacidade) VALUES 
-('Autódromo de Interlagos', 'São Paulo - SP', 100000),
-('Discodelia - Pub & Records', 'Salvador - BA', 300),
-('Arena Festival - Wet''n Wild', 'Salvador - BA', 30000),
-('Allianz Parque', 'São Paulo - SP', 55000),
-('Estádio MorumBIS', 'São Paulo - SP', 66000),
-('Pedreira Paulo Leminski', 'Curitiba - PR', 25000),
-('Parque Permanente de Exposições', 'Ribeirão Preto - SP', 50000),
-('Parque dos Atletas', 'Rio de Janeiro - RJ', 85000),
-('Estádio Nilton Santos (Engenhão)', 'Rio de Janeiro - RJ', 60000),
-('Estádio Mineirão', 'Belo Horizonte - MG', 62000);
+-- insert ingressos
+INSERT INTO ingresso (valor, assento, data_show, duracao, is_vip, is_disponivel, eventoID) VALUES
+
+-- EVENTO 1 (3 dias)
+(150,'A1','2026-01-10','3h',FALSE,TRUE,1),(150,'A2','2026-01-10','3h',FALSE,TRUE,1),
+(150,'A3','2026-01-10','3h',FALSE,FALSE,1),(150,'A4','2026-01-10','3h',FALSE,TRUE,1),
+(160,'B1','2026-01-10','3h',FALSE,TRUE,1),(160,'B2','2026-01-10','3h',FALSE,FALSE,1),
+(170,'C1','2026-01-10','3h',FALSE,TRUE,1),(170,'C2','2026-01-10','3h',FALSE,TRUE,1),
+(200,'VIP1','2026-01-10','3h',TRUE,TRUE,1),(200,'VIP2','2026-01-10','3h',TRUE,FALSE,1),
+(210,'VIP3','2026-01-10','3h',TRUE,TRUE,1),(210,'VIP4','2026-01-10','3h',TRUE,FALSE,1),
+(155,'D1','2026-01-10','3h',FALSE,TRUE,1),(155,'D2','2026-01-10','3h',FALSE,TRUE,1),
+(165,'E1','2026-01-10','3h',FALSE,FALSE,1),
+
+(140,'A1','2026-01-11','3h',FALSE,TRUE,1),(140,'A2','2026-01-11','3h',FALSE,TRUE,1),
+(140,'A3','2026-01-11','3h',FALSE,FALSE,1),(150,'B1','2026-01-11','3h',FALSE,TRUE,1),
+(150,'B2','2026-01-11','3h',FALSE,TRUE,1),(160,'C1','2026-01-11','3h',FALSE,FALSE,1),
+(160,'C2','2026-01-11','3h',FALSE,TRUE,1),(200,'VIP1','2026-01-11','3h',TRUE,TRUE,1),
+(200,'VIP2','2026-01-11','3h',TRUE,FALSE,1),(210,'VIP3','2026-01-11','3h',TRUE,TRUE,1),
+(210,'VIP4','2026-01-11','3h',TRUE,FALSE,1),(145,'D1','2026-01-11','3h',FALSE,TRUE,1),
+(145,'D2','2026-01-11','3h',FALSE,TRUE,1),(155,'E1','2026-01-11','3h',FALSE,FALSE,1),
+
+(130,'A1','2026-01-12','3h',FALSE,TRUE,1),(130,'A2','2026-01-12','3h',FALSE,TRUE,1),
+(130,'A3','2026-01-12','3h',FALSE,FALSE,1),(140,'B1','2026-01-12','3h',FALSE,TRUE,1),
+(140,'B2','2026-01-12','3h',FALSE,TRUE,1),(150,'C1','2026-01-12','3h',FALSE,FALSE,1),
+(150,'C2','2026-01-12','3h',FALSE,TRUE,1),(200,'VIP1','2026-01-12','4h',TRUE,TRUE,1),
+(200,'VIP2','2026-01-12','4h',TRUE,FALSE,1),(210,'VIP3','2026-01-12','4h',TRUE,TRUE,1),
+(210,'VIP4','2026-01-12','4h',TRUE,FALSE,1),(135,'D1','2026-01-12','3h',FALSE,TRUE,1),
+(135,'D2','2026-01-12','3h',FALSE,TRUE,1),(145,'E1','2026-01-12','3h',FALSE,FALSE,1),
+(145, 'E2', '2026-01-12', '3h', FALSE, TRUE, 1),
+
+-- EVENTO 2 (2 dias)
+(160,'A1','2026-02-05','4h',FALSE,TRUE,2),(160,'A2','2026-02-05','4h',FALSE,FALSE,2),
+(170,'B1','2026-02-05','4h',FALSE,TRUE,2),(170,'B2','2026-02-05','4h',FALSE,TRUE,2),
+(180,'C1','2026-02-05','4h',FALSE,TRUE,2),(200,'VIP1','2026-02-05','4h',TRUE,TRUE,2),
+(200,'VIP2','2026-02-05','4h',TRUE,FALSE,2),(210,'VIP3','2026-02-05','4h',TRUE,TRUE,2),
+(210,'VIP4','2026-02-05','4h',TRUE,FALSE,2),(165,'D1','2026-02-05','4h',FALSE,TRUE,2),
+(165,'D2','2026-02-05','4h',FALSE,TRUE,2),(175,'E1','2026-02-05','4h',FALSE,FALSE,2),
+
+(150,'A1','2026-02-06','4h',FALSE,TRUE,2),(150,'A2','2026-02-06','4h',FALSE,TRUE,2),
+(160,'B1','2026-02-06','4h',FALSE,FALSE,2),(160,'B2','2026-02-06','4h',FALSE,TRUE,2),
+(170,'C1','2026-02-06','4h',FALSE,TRUE,2),(200,'VIP1','2026-02-06','4h',TRUE,TRUE,2),
+(200,'VIP2','2026-02-06','4h',TRUE,FALSE,2),(210,'VIP3','2026-02-06','4h',TRUE,TRUE,2),
+(210,'VIP4','2026-02-06','4h',TRUE,FALSE,2),(155,'D1','2026-02-06','4h',FALSE,TRUE,2),
+(155,'D2','2026-02-06','4h',FALSE,TRUE,2),(165,'E1','2026-02-06','4h',FALSE,FALSE,2),
+
+-- EVENTO 3 (1 dia)
+(100,'A1','2026-03-15','5h',FALSE,TRUE,3),(100,'A2','2026-03-15','5h',FALSE,TRUE,3),
+(110,'B1','2026-03-15','5h',FALSE,FALSE,3),(110,'B2','2026-03-15','5h',FALSE,TRUE,3),
+(120,'C1','2026-03-15','5h',FALSE,TRUE,3),(120,'C2','2026-03-15','5h',FALSE,TRUE,3),
+(180,'VIP1','2026-03-15','5h',TRUE,TRUE,3),(180,'VIP2','2026-03-15','5h',TRUE,FALSE,3),
+(190,'VIP3','2026-03-15','5h',TRUE,TRUE,3),(190,'VIP4','2026-03-15','5h',TRUE,FALSE,3),
+(95,'D1','2026-03-15','5h',FALSE,TRUE,3),(95,'D2','2026-03-15','5h',FALSE,TRUE,3),
+(105,'E1','2026-03-15','5h',FALSE,FALSE,3),(100,'E2','2025-03-15','5h',FALSE,TRUE,3),
+
+-- EVENTO 4 (1 dia)
+(115, 'A1', '2026-04-02', '3h', FALSE, FALSE, 4), (120, 'A2', '2026-04-02', '3h', FALSE, TRUE, 4), -- 2
+(100, 'B1', '2026-04-02', '3h', FALSE, TRUE, 4), (135, 'B2', '2026-04-02', '3h', FALSE, FALSE, 4), -- 4
+(125, 'C1', '2026-04-02', '3h', FALSE, FALSE, 4), (130, 'C2', '2026-04-02', '3h', FALSE, TRUE, 4), -- 6
+(150, 'VIP1', '2026-04-02', '3h', TRUE, FALSE, 4), (175, 'VIP2', '2026-04-02', '3h', TRUE, TRUE, 4), -- 8
+(160, 'VIP3', '2026-04-02', '3h', TRUE, TRUE, 4), (150, 'VIP4', '2026-04-02', '3h', TRUE, FALSE, 4), -- 10
+(105, 'D1', '2026-04-02', '3h', FALSE, FALSE, 4), (115, 'D2', '2026-04-02', '3h', FALSE, TRUE, 4), -- 12
+(110, 'E1', '2026-04-02', '3h', FALSE, FALSE, 4), -- 13
+
+-- EVENTO 5 (2 dias)
+(105, 'A1', '2026-04-20', '4h', FALSE, TRUE, 5), (100, 'A2', '2026-04-20', '4h', FALSE, FALSE, 5), -- 2
+(110, 'B1', '2026-04-20', '4h', FALSE, TRUE, 5), (120, 'B2', '2026-04-20', '4h', FALSE, TRUE, 5), -- 4
+(100, 'C1', '2026-04-20', '4h', FALSE, FALSE, 5), (115, 'C2', '2026-04-20', '4h', FALSE, TRUE, 5), -- 6
+(180, 'VIP1', '2026-04-20', '4h', TRUE, TRUE, 5), (170, 'VIP2', '2026-04-20', '4h', TRUE, FALSE, 5), -- 8
+(190, 'VIP3', '2026-04-20', '4h', TRUE, TRUE, 5), (185, 'VIP4', '2026-04-20', '4h', TRUE, FALSE, 5), -- 10
+(110, 'D1', '2026-04-20', '4h', FALSE, FALSE, 5), (115, 'D2', '2026-04-20', '4h', FALSE, FALSE, 5), -- 12
+(110, 'E1', '2026-04-20', '4h', FALSE, FALSE, 5), (105, 'E2', '2026-04-20', '4h', FALSE, TRUE, 5), -- 14
+
+(110, 'A1', '2026-04-21', '4h', FALSE, TRUE, 5), (105, 'A2', '2026-04-21', '4h', FALSE, TRUE, 5), -- 16
+(130, 'A3', '2026-04-21', '4h', FALSE, TRUE, 5), (110, 'B1', '2026-04-21', '4h', FALSE, TRUE, 5), -- 18
+(100, 'B2', '2026-04-21', '4h', FALSE, FALSE, 5), (120, 'C1', '2026-04-21', '4h', FALSE, FALSE, 5), -- 20
+(115, 'C2', '2026-04-21', '4h', FALSE, TRUE, 5), (190, 'VIP1', '2026-04-21', '4h', TRUE, FALSE, 5), -- 22
+(170, 'VIP2', '2026-04-21', '4h', TRUE, FALSE, 5), (185, 'VIP3', '2026-04-21', '4h', TRUE, TRUE, 5), -- 24
+(180, 'VIP4', '2026-04-21', '4h', TRUE, FALSE, 5), (100, 'D1', '2026-04-21', '4h', FALSE, FALSE, 5), -- 26
+(125, 'D2', '2026-04-21', '4h', FALSE, TRUE, 5), (120, 'E1', '2026-04-21', '4h', FALSE, TRUE, 5), -- 28
+(105, 'E2', '2026-04-21', '4h', FALSE, FALSE, 5); -- 29
+
+SELECT * FROM ingresso;
+
 -- update sugestão
 UPDATE evento 
 SET data_fim = '2026-03-24' 
