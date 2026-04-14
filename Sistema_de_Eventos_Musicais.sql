@@ -10,6 +10,19 @@ CREATE TABLE evento (
     updateAT TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
+CREATE TABLE local (
+    id INT AUTO_INCREMENT PRIMARY KEY UNIQUE,
+    nome VARCHAR(100) NOT NULL,
+    endereco VARCHAR(200) NOT NULL,
+    capacidade INT,
+    createAT TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updateAT TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+ALTER TABLE evento DROP COLUMN endereco;
+ALTER TABLE evento ADD COLUMN localID INT;
+ALTER TABLE evento ADD FOREIGN KEY (localID) REFERENCES local(id);
+
 CREATE TABLE artista (
 	id INT AUTO_INCREMENT PRIMARY KEY UNIQUE,
     nome VARCHAR(100) NOT NULL,
@@ -215,6 +228,18 @@ INSERT INTO funcionario (nome, idade, cargo, salario) VALUES
 ('Diego Monteiro', 28, 'Suporte Técnico', 2800.00),
 ('Letícia Carvalho', 25, 'Atendimento', 2200.00);
 
+--insert local
+INSERT INTO local (nome, endereco, capacidade) VALUES 
+('Autódromo de Interlagos', 'São Paulo - SP', 100000),
+('Discodelia - Pub & Records', 'Salvador - BA', 300),
+('Arena Festival - Wet''n Wild', 'Salvador - BA', 30000),
+('Allianz Parque', 'São Paulo - SP', 55000),
+('Estádio MorumBIS', 'São Paulo - SP', 66000),
+('Pedreira Paulo Leminski', 'Curitiba - PR', 25000),
+('Parque Permanente de Exposições', 'Ribeirão Preto - SP', 50000),
+('Parque dos Atletas', 'Rio de Janeiro - RJ', 85000),
+('Estádio Nilton Santos (Engenhão)', 'Rio de Janeiro - RJ', 60000),
+('Estádio Mineirão', 'Belo Horizonte - MG', 62000);
 -- update sugestão
 UPDATE evento 
 SET data_fim = '2026-03-24' 
