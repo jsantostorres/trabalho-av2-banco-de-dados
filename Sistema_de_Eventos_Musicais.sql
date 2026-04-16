@@ -327,9 +327,18 @@ INSERT INTO ingresso (valor, assento, data_show, duracao, is_vip, is_disponivel,
 (115, 'D2', '2026-05-10', '4h', FALSE, TRUE, 6), (110, 'E1', '2026-05-10', '4h', FALSE, TRUE, 6), -- 14
 (120, 'E2', '2026-05-10', '4h', FALSE, FALSE, 6); -- 15
 
--- EVENTO 7 (2 dias)
-
 SELECT * FROM ingresso;
+DESCRIBE funcionario_evento;
+SELECT * FROM funcionario;
+
+INSERT INTO funcionario_evento (eventoID, funcionarioID) VALUES
+(1, 1), (1, 2), (1, 3), (1, 4), (1, 5), (1, 6), (1, 8), (1, 9),
+(2, 1), (2, 3), (2, 10), (2, 9), (2, 6), (2, 5), (2, 4), (2, 2),
+(3, 1), (3, 5), (3, 6), (3, 9), (3, 2), (3, 8), (3, 10),
+(4, 1), (4, 5), (4, 6), (4, 9), (4, 2), (4, 3), (4, 4),
+(5, 1), (5, 5), (5, 6), (5, 9), (5, 2), (5, 8), (5, 10), (5, 4),
+(6, 1), (6, 2), (6, 3), (6, 4), (6, 5), (6, 6), (6, 7), (6, 8), (6, 9), (6, 10);
+SELECT * FROM funcionario_evento;
 
 -- update sugestão
 UPDATE evento 
@@ -342,29 +351,29 @@ WHERE nome = 'Festival Verão Bahia';
 
 -- select sugestão
 -- Consultas Simples
-SELECT nome, data_inicio, data_fim 
+SELECT nome, dataInicio, dataFim 
 FROM evento;
 
 SELECT nome, genero 
 FROM artista 
 WHERE idade > 30;
 
--- Consultas Complexas
-SELECT a.nome AS Artista, e.nome AS Evento
-FROM participacao p
-JOIN artista a ON p.artistaID = a.id
-JOIN evento e ON p.eventoID = e.id;
+SELECT e.nome, l.nome, l.endereco 
+FROM evento e
+JOIN local l ON e.localID = l.id;
 
-SELECT c.nome AS Cliente, i.assento, i.valor, cv.metodo_pagamento 
+-- Consultas Complexas
+
+SELECT c.nome, i.assento, i.valor, cv.metodoPagamento 
 FROM compra_venda cv
 JOIN cliente c ON cv.clienteID = c.id
 JOIN ingresso i ON cv.ingressoID = i.id;
 
-SELECT eventoID, COUNT(id) AS Qtd_Ingressos
+SELECT eventoID, COUNT(id) 
 FROM ingresso 
 GROUP BY eventoID;
 
-SELECT e.nome AS Evento, SUM(i.valor) AS Faturamento_Total
+SELECT e.nome, SUM(i.valor) 
 FROM compra_venda cv
 JOIN ingresso i ON cv.ingressoID = i.id
 JOIN evento e ON i.eventoID = e.id
