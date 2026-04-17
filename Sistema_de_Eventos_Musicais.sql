@@ -13,7 +13,7 @@ CREATE TABLE evento (
 CREATE TABLE artista (
 	id INT AUTO_INCREMENT PRIMARY KEY UNIQUE,
     nome VARCHAR(100) NOT NULL,
-    idade INT NOT NULL,
+    aniver DATE NOT NULL,
     repertorio_musical VARCHAR(254),
     genero VARCHAR(100),
     eventoID INT,
@@ -35,7 +35,7 @@ CREATE TABLE participacao (
 CREATE TABLE funcionario (
 	id INT AUTO_INCREMENT PRIMARY KEY UNIQUE,
     nome VARCHAR(100) NOT NULL,
-    idade INT,
+    aniver DATE,
     cargo VARCHAR(50) NOT NULL,
     salario DOUBLE,
     createAT TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -69,7 +69,7 @@ CREATE TABLE ingresso (
 CREATE TABLE cliente (
 	id INT AUTO_INCREMENT PRIMARY KEY UNIQUE,
     nome VARCHAR(100),
-    idade INT,
+    aniver DATE NOT NULL,
     cpf CHAR(14),
     telefone VARCHAR(14),
     email VARCHAR(100),
