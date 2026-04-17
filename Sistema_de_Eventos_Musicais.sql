@@ -61,7 +61,7 @@ CREATE TABLE ingresso (
     tipo BOOL, -- is_vip
     status BOOL, -- is_disponivel
     eventoID INT,
-    FOREIGN KEY (eventoID) REFERENCES evento (id),
+    CONSTRAINT fk_id_evento FOREIGN KEY (eventoID) REFERENCES evento (id) ON DELETE CASCADE,
     createAT TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updateAT TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
@@ -327,10 +327,6 @@ INSERT INTO ingresso (valor, assento, data_show, duracao, is_vip, is_disponivel,
 (115, 'D2', '2026-05-10', '4h', FALSE, TRUE, 6), (110, 'E1', '2026-05-10', '4h', FALSE, TRUE, 6), -- 14
 (120, 'E2', '2026-05-10', '4h', FALSE, FALSE, 6); -- 15
 
-SELECT * FROM ingresso;
-DESCRIBE funcionario_evento;
-SELECT * FROM funcionario;
-
 INSERT INTO funcionario_evento (eventoID, funcionarioID) VALUES
 (1, 1), (1, 2), (1, 3), (1, 4), (1, 5), (1, 6), (1, 8), (1, 9),
 (2, 1), (2, 3), (2, 10), (2, 9), (2, 6), (2, 5), (2, 4), (2, 2),
@@ -338,7 +334,6 @@ INSERT INTO funcionario_evento (eventoID, funcionarioID) VALUES
 (4, 1), (4, 5), (4, 6), (4, 9), (4, 2), (4, 3), (4, 4),
 (5, 1), (5, 5), (5, 6), (5, 9), (5, 2), (5, 8), (5, 10), (5, 4),
 (6, 1), (6, 2), (6, 3), (6, 4), (6, 5), (6, 6), (6, 7), (6, 8), (6, 9), (6, 10);
-SELECT * FROM funcionario_evento;
 
 -- insert compra_venda
 INSERT INTO compra_venda (metodo_pagamento, clienteID, funcionarioID, ingressoID) VALUES
@@ -358,7 +353,9 @@ INSERT INTO compra_venda (metodo_pagamento, clienteID, funcionarioID, ingressoID
 ('dinheiro', 7, 2, 77), ('cartão', 8, 8, 134),
 ('pix', 9, 3, 61), ('dinheiro', 10, 7, 155);
 
-SELECT * FROM compra_venda;
+-- selects simples
+SELECT * FROM evento WHERE duracao_dias = 3;
+SELECT * FROM funcionario;
 
 -- update sugestão
 UPDATE evento
