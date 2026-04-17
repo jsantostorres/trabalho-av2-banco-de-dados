@@ -82,7 +82,7 @@ CREATE TABLE compra_venda (
     metodo_pagamento VARCHAR(50),
     clienteID INT,
     funcionarioID INT,
-    ingressoID INT,
+    ingressoID INT UNIQUE,
     FOREIGN KEY (clienteID) REFERENCES cliente (id),
     FOREIGN KEY (funcionarioID) REFERENCES funcionario (id),
     FOREIGN KEY (ingressoID) REFERENCES ingresso (id),
@@ -340,12 +340,32 @@ INSERT INTO funcionario_evento (eventoID, funcionarioID) VALUES
 (6, 1), (6, 2), (6, 3), (6, 4), (6, 5), (6, 6), (6, 7), (6, 8), (6, 9), (6, 10);
 SELECT * FROM funcionario_evento;
 
+-- insert compra_venda
+INSERT INTO compra_venda (metodo_pagamento, clienteID, funcionarioID, ingressoID) VALUES
+('cartão', 1, 3, 1), ('pix', 2, 7, 2),
+('dinheiro', 3, 2, 3), ('cartão', 4, 8, 4),
+('pix', 5, 3, 5), ('dinheiro', 6, 7, 6),
+('cartão', 7, 2, 7), ('pix', 8, 8, 8),
+('dinheiro', 9, 3, 9), ('cartão', 10, 7, 10),
+('pix', 1, 2, 11), ('dinheiro', 2, 8, 12),
+('cartão', 3, 3, 13), ('pix', 4, 7, 14),
+('dinheiro', 5, 2, 15), ('cartão', 6, 8, 16),
+('pix', 7, 3, 17), ('dinheiro', 8, 7, 18),
+('cartão', 9, 2, 19), ('pix', 10, 8, 20),
+('dinheiro', 1, 3, 21), ('cartão', 2, 7, 22),
+('pix', 3, 2, 23), ('dinheiro', 4, 8, 24),
+('cartão', 5, 3, 25), ('pix', 6, 7, 26),
+('dinheiro', 7, 2, 27), ('cartão', 8, 8, 28),
+('pix', 9, 3, 29), ('dinheiro', 10, 7, 30);
+
+SELECT * FROM compra_venda;
+
 -- update sugestão
-UPDATE evento 
+UPDATE evento
 SET data_fim = '2026-03-24' 
 WHERE id = 1;
 
-UPDATE evento 
+UPDATE evento
 SET quant_artistas = 10
 WHERE nome = 'Festival Verão Bahia';
 
@@ -356,7 +376,7 @@ FROM evento;
 
 -- Consultas Complexas
 
-SELECT c.nome, i.assento, i.valor, cv.metodoPagamento 
+SELECT c.nome, i.assento, i.valor, cv.metodo_pagamento 
 FROM compra_venda cv
 JOIN cliente c ON cv.clienteID = c.id
 JOIN ingresso i ON cv.ingressoID = i.id;
