@@ -342,21 +342,21 @@ SELECT * FROM funcionario_evento;
 
 -- insert compra_venda
 INSERT INTO compra_venda (metodo_pagamento, clienteID, funcionarioID, ingressoID) VALUES
-('cartão', 1, 3, 1), ('pix', 2, 7, 2),
-('dinheiro', 3, 2, 3), ('cartão', 4, 8, 4),
-('pix', 5, 3, 5), ('dinheiro', 6, 7, 6),
-('cartão', 7, 2, 7), ('pix', 8, 8, 8),
-('dinheiro', 9, 3, 9), ('cartão', 10, 7, 10),
-('pix', 1, 2, 11), ('dinheiro', 2, 8, 12),
-('cartão', 3, 3, 13), ('pix', 4, 7, 14),
-('dinheiro', 5, 2, 15), ('cartão', 6, 8, 16),
-('pix', 7, 3, 17), ('dinheiro', 8, 7, 18),
-('cartão', 9, 2, 19), ('pix', 10, 8, 20),
-('dinheiro', 1, 3, 21), ('cartão', 2, 7, 22),
-('pix', 3, 2, 23), ('dinheiro', 4, 8, 24),
-('cartão', 5, 3, 25), ('pix', 6, 7, 26),
-('dinheiro', 7, 2, 27), ('cartão', 8, 8, 28),
-('pix', 9, 3, 29), ('dinheiro', 10, 7, 30);
+('cartão', 1, 3, 12), ('pix', 2, 7, 3),
+('dinheiro', 3, 2, 27), ('cartão', 4, 8, 8),
+('pix', 5, 3, 19), ('dinheiro', 6, 7, 1),
+('cartão', 7, 2, 30), ('pix', 8, 8, 14),
+('dinheiro', 9, 3, 6), ('cartão', 10, 7, 22),
+('pix', 1, 2, 9), ('dinheiro', 2, 8, 25),
+('cartão', 3, 3, 2), ('pix', 4, 7, 18),
+('dinheiro', 5, 2, 11), ('cartão', 6, 8, 29),
+('pix', 7, 3, 5), ('dinheiro', 8, 7, 16),
+('cartão', 9, 2, 23), ('pix', 10, 8, 7),
+('dinheiro', 1, 3, 20), ('cartão', 2, 7, 4),
+('pix', 3, 2, 28), ('dinheiro', 4, 8, 10),
+('cartão', 5, 3, 15), ('pix', 6, 7, 26),
+('dinheiro', 7, 2, 13), ('cartão', 8, 8, 24),
+('pix', 9, 3, 17), ('dinheiro', 10, 7, 21);
 
 SELECT * FROM compra_venda;
 
