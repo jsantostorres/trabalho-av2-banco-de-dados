@@ -351,12 +351,8 @@ WHERE nome = 'Festival Verão Bahia';
 
 -- select sugestão
 -- Consultas Simples
-SELECT nome, dataInicio, dataFim 
+SELECT nome, data_inicio, data_fim 
 FROM evento;
-
-SELECT e.nome, l.nome, l.endereco 
-FROM evento e
-JOIN local l ON e.localID = l.id;
 
 -- Consultas Complexas
 
