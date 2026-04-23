@@ -363,6 +363,10 @@ SET data_fim = '2026-03-24'
 WHERE id = 1;
 
 UPDATE evento
+SET data_inicio = '2026-03-22'
+WHERE id = 1;
+
+UPDATE evento
 SET quant_artistas = 10
 WHERE nome = 'Festival Verão Bahia';
 
